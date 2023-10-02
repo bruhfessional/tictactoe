@@ -25,16 +25,17 @@ class GridPage extends StatelessWidget {
                   BlocBuilder<GameRoleCubit, GameRoleEnum>(
                     builder: (BuildContext context, GameRoleEnum state) {
                       return ToggleButtons(
+                        textStyle: const TextStyle(color: Colors.black),
                         isSelected: _isSelectedRole(state),
                         color: Colors.grey,
                         selectedColor: Colors.black,
                         fillColor: Colors.lightBlueAccent,
                         borderColor: Colors.lightBlueAccent,
                         selectedBorderColor: Colors.black,
-                        borderRadius: const BorderRadius.all(Radius.circular(10)),
+                        borderRadius: BorderRadius.circular(AppTheme.borderRadius),
                         children: const [
-                          Text('O', style: TextStyle(color: Colors.black)),
-                          Text('X', style: TextStyle(color: Colors.black)),
+                          Text('O'),
+                          Text('X'),
                         ],
                         onPressed: (int index) {
                           context
@@ -76,12 +77,14 @@ class GridPage extends StatelessWidget {
                         color: Colors.lightBlueAccent,
                       ),
                     ),
+                    width: 25.sp,
+                    height: 25.sp,
                     child: IconButton(
-                        onPressed: () {
-                          context.read<GridCubit>().clearGrid();
-                          context.read<GameRoleCubit>().setModel(GameRoleEnum.empty);
-                        },
-                        icon: const Icon(Icons.refresh_outlined)),
+                      onPressed: () {
+                        context.read<GridCubit>().clearGrid();
+                      },
+                      icon: const Icon(Icons.refresh_outlined),
+                    ),
                   ),
                 ],
               ),
@@ -118,7 +121,7 @@ class GridPage extends StatelessWidget {
                           child: Center(
                             child: Text(
                               values.roleList[index].toSign(),
-                              style: const TextStyle(fontSize: 60),
+                              style: TextStyle(fontSize: 60.sp),
                             ),
                           ),
                         ),
