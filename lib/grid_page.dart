@@ -14,7 +14,7 @@ class GridPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
-        padding: const EdgeInsets.all(35),
+        padding: EdgeInsets.all(35.sp),
         child: Column(
           children: [
             Expanded(
@@ -94,7 +94,7 @@ class GridPage extends StatelessWidget {
                   return GridView.count(
                     // physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    padding: const EdgeInsets.only(top: 35),
+                    padding: EdgeInsets.only(top: 35.sp),
                     crossAxisCount: 3,
                     children: List.generate(
                       context.read<GridCubit>().state.roleList.length,
