@@ -12,7 +12,26 @@ class GridCubit extends Cubit<GameRoles> {
   }
 
   void clearGrid() {
-    emit(GameRoles(roleList: List.filled(9, GameRoleEnum.empty)));
+    emit(GameRoles(roleList: List.filled(state.roleList.length, GameRoleEnum.empty)));
     print('gridState: ${state.toSign()}  (${GameRoleEnum.empty.toSign()})');
+  }
+
+  void incrementGrid() {
+    // int number = state.roleList.length * 3;
+    // emit(GameRoles(roleList: List.filled(number, GameRoleEnum.empty)));
+  }
+
+  void decrementGrid() {
+    // int number = 0;
+    // if (state.roleList.length % 9 != 0 && state.roleList.length > 8) {
+    //   number = (state.roleList.length / 3) as int;
+    // } else {
+    //   number = state.roleList.length;
+    // }
+    // emit(
+    //   GameRoles(
+    //     roleList: List.filled(number, GameRoleEnum.empty),
+    //   ),
+    // );
   }
 }

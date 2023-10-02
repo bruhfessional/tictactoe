@@ -13,8 +13,6 @@ class GridPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      // extendBodyBehindAppBar: false,
-      // primary: true,
       body: Container(
         padding: const EdgeInsets.all(35),
         child: Column(
@@ -27,7 +25,7 @@ class GridPage extends StatelessWidget {
                   BlocBuilder<GameRoleCubit, GameRoleEnum>(
                     builder: (BuildContext context, GameRoleEnum state) {
                       return ToggleButtons(
-                        isSelected: _isSelected(state),
+                        isSelected: _isSelectedRole(state),
                         color: Colors.grey,
                         selectedColor: Colors.black,
                         fillColor: Colors.lightBlueAccent,
@@ -35,8 +33,8 @@ class GridPage extends StatelessWidget {
                         selectedBorderColor: Colors.black,
                         borderRadius: const BorderRadius.all(Radius.circular(10)),
                         children: const [
-                          Text('O'),
-                          Text('X'),
+                          Text('O', style: TextStyle(color: Colors.black)),
+                          Text('X', style: TextStyle(color: Colors.black)),
                         ],
                         onPressed: (int index) {
                           context
@@ -46,13 +44,36 @@ class GridPage extends StatelessWidget {
                       );
                     },
                   ),
+                  // BlocBuilder<GridCubit, GameRoles>(
+                  //   builder: (BuildContext context, GameRoles state) {
+                  //     return ToggleButtons(
+                  //       isSelected: const [false, false],
+                  //       color: Colors.grey,
+                  //       selectedColor: Colors.black,
+                  //       fillColor: Colors.lightBlueAccent,
+                  //       borderColor: Colors.lightBlueAccent,
+                  //       selectedBorderColor: Colors.black,
+                  //       borderRadius: const BorderRadius.all(Radius.circular(10)),
+                  //       children: const [
+                  //         Text('-', style: TextStyle(color: Colors.black)),
+                  //         Text('+', style: TextStyle(color: Colors.black)),
+                  //       ],
+                  //       onPressed: (int index) {
+                  //         if (index == 0) {
+                  //           context.read<GridCubit>().decrementGrid();
+                  //         } else {
+                  //           context.read<GridCubit>().incrementGrid();
+                  //         }
+                  //       },
+                  //     );
+                  //   },
+                  // ),
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(AppTheme.borderRadius),
                       border: Border.all(
                         style: BorderStyle.solid,
                         color: Colors.lightBlueAccent,
-                        // strokeAlign: 2,
                       ),
                     ),
                     child: IconButton(
@@ -76,7 +97,7 @@ class GridPage extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 35),
                     crossAxisCount: 3,
                     children: List.generate(
-                      9,
+                      context.read<GridCubit>().state.roleList.length,
                       (index) => GestureDetector(
                         onTapUp: (details) {
                           context
@@ -113,7 +134,7 @@ class GridPage extends StatelessWidget {
     );
   }
 
-  List<bool> _isSelected(GameRoleEnum state) {
+  List<bool> _isSelectedRole(GameRoleEnum state) {
     List<bool> result = [false, false];
     switch (state) {
       case GameRoleEnum.empty:

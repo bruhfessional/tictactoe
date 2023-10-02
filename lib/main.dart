@@ -20,6 +20,7 @@ class TicTacToe extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsFlutterBinding.ensureInitialized();
     return MaterialApp(
+      title: 'TicTacToe',
       theme: AppTheme.lightTheme,
       debugShowCheckedModeBanner: false,
       home: MultiBlocProvider(
