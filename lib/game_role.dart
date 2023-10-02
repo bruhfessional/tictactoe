@@ -1,20 +1,20 @@
 import 'package:equatable/equatable.dart';
 
-enum GameModelsEnum {
+enum GameRoleEnum {
   empty,
   cross,
   circle;
 
-  String getSign() {
+  String toSign() {
     String result = '';
     switch (this) {
-      case GameModelsEnum.empty:
+      case GameRoleEnum.empty:
         result = '_';
         break;
-      case GameModelsEnum.cross:
+      case GameRoleEnum.cross:
         result = 'X';
         break;
-      case GameModelsEnum.circle:
+      case GameRoleEnum.circle:
         result = 'O';
         break;
     }
@@ -22,22 +22,22 @@ enum GameModelsEnum {
   }
 }
 
-class GameModels extends Equatable {
-  final List<GameModelsEnum> modelList;
+class GameRoles extends Equatable {
+  final List<GameRoleEnum> roleList;
 
-  const GameModels({required this.modelList});
+  const GameRoles({required this.roleList});
 
   String toSign() {
     String result = '';
-    for (GameModelsEnum enumModel in modelList) {
+    for (GameRoleEnum enumModel in roleList) {
       switch (enumModel) {
-        case GameModelsEnum.empty:
+        case GameRoleEnum.empty:
           result += '_';
           break;
-        case GameModelsEnum.cross:
+        case GameRoleEnum.cross:
           result += 'X';
           break;
-        case GameModelsEnum.circle:
+        case GameRoleEnum.circle:
           result += 'O';
           break;
       }
@@ -46,5 +46,5 @@ class GameModels extends Equatable {
   }
 
   @override
-  List<Object?> get props => modelList;
+  List<Object?> get props => roleList;
 }
